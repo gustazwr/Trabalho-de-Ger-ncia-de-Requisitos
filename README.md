@@ -1,8 +1,18 @@
-# Especificação de Requisitos do Sistema (ERS/SRS)
+# Gerência-de-Requisitos---Engenharia-de-Requisitos
+
+# Sistema de Gestão de Academia - Especificação de Requisitos
 
 ## Descrição Geral do Sistema
-O sistema tem como objetivo [**descrever brevemente a finalidade e escopo geral do sistema**].  
-Inclui o perfil dos usuários, principais funcionalidades e contexto de operação.
+O sistema tem como objetivo gerenciar todas as operações de uma academia, incluindo:
+- Cadastro e controle de alunos
+- Gestão de planos e pagamentos
+- Agendamento de aulas e horários
+- Controle de equipamentos
+- Relatórios de frequência e desempenho
+
+**Usuários:** Administradores, Professores, Alunos, Recepcionistas
+
+**Plataforma:** Web e Mobile
 
 ---
 
@@ -11,42 +21,70 @@ Inclui o perfil dos usuários, principais funcionalidades e contexto de operaç�
 ### Requisitos Funcionais (RF)
 | ID | Descrição | Prioridade |
 |----|------------|-----------|
-| RF01 | O usuário deve poder realizar login no sistema. |Essencial|
-| RF02 | O sistema deve permitir o cadastro de tarefas. |Essencial |
-| RF03 | O usuário pode excluir uma tarefa cadastrada. | Essencial |
+| RF01 | O sistema deve permitir cadastro de alunos com dados pessoais | Essencial |
+| RF02 | O aluno deve poder visualizar seu plano atual | Essencial |
+| RF03 | O sistema deve gerar mensalidades automaticamente | Essencial |
+| RF04 | O professor deve poder registrar presença em aulas | Importante |
+| RF05 | O administrador deve gerar relatórios financeiros | Importante |
+| RF06 | O aluno deve poder agendar horário para uso de equipamentos | Desejável |
 
 ### Requisitos Não Funcionais (RNF)
 | ID | Descrição | Prioridade |
 |----|------------|-----------|
-| RNF01 | O sistema deve responder em até 2 segundos por requisição. | Essencial |
-| RNF02 | O acesso deve ser protegido por autenticação segura. | Essencial |
-| RNF03 | A interface deve ser intuitiva e responsiva. | Essencial |
+| RNF01 | O sistema deve responder em até 2 segundos | Essencial |
+| RNF02 | Deve suportar 500 usuários simultâneos | Essencial | 
+| RNF03 | Interface responsiva para mobile | Essencial |
+| RNF04 | Backup automático diário dos dados | Importante |
+| RNF05 | Conformidade com LGPD | Essencial |
 
 ### Regras de Negócio (RN)
 | ID | Descrição | Prioridade |
 |----|------------| -----------|
-| RN01 | Cada usuário deve possuir um e-mail único para cadastro. | Essencial |
-| RN02 | Uma tarefa concluída não pode ser editada. | Essencial | Essencial |
+| RN01 | Aluno com mensalidade atrasada não pode agendar aulas | Essencial |
+| RN02 | Cada aluno pode ter apenas um plano ativo por vez | Essencial |
+| RN03 | Cancelamento de plano requer aviso prévio de 30 dias | Essencial |
+| RN04 | Aulas em grupo limitadas a 20 alunos | Importante |
 
 ---
 
 ## Diagramas UML
 
 ### Diagrama de Casos de Uso
-![Diagrama de Casos de Uso](docs/casos_de_uso.jpg)
+*(Adicione a imagem aqui depois)*
+![Diagrama de Casos de Uso](docs/use-case-diagram.png)
 
-### Diagrama de Sequência
-![Diagrama de Sequência](docs/diagrama_sequencia.png)
+**Principais atores:** Aluno, Professor, Administrador
 
-### Diagrama de Atividades
-![Diagrama de Atividades](docs/diagrama_atividades.png)
+### Diagrama de Sequência - Agendamento de Aula
+*(Adicione a imagem aqui depois)*
+![Diagrama de Sequência](docs/sequence-diagram.png)
+
+### Diagrama de Atividades - Processo de Check-in
+*(Adicione a imagem aqui depois)*
+![Diagrama de Atividades](docs/activity-diagram.png)
 
 ---
 
 ## Arquitetura do Sistema
-O sistema adota o estilo arquitetural **MVC (Model–View–Controller)**, separando responsabilidades entre:
-- **Model:** lógica e acesso a dados.  
-- **View:** interface e interação com o usuário.  
-- **Controller:** coordenação entre as camadas.
 
-- ![Arquiteura do Sistema](docs/arquiterura.png)
+### Padrão MVC (Model-View-Controller)
+
+**Model (Modelo):**
+- Entidades: Aluno, Plano, Aula, Pagamento
+- Lógica de negócio e acesso ao banco de dados
+
+**View (Visão):**
+- Interface web (React.js/Angular)
+- App mobile (React Native)
+- Dashboards administrativos
+
+**Controller (Controlador):**
+- Rotas e endpoints da API
+- Validação de dados
+- Comunicação entre Model e View
+
+**Tecnologias sugeridas:**
+- Backend: Node.js ou Spring Boot
+- Banco de Dados: PostgreSQL
+- Frontend: React.js
+- Mobile: React Native
